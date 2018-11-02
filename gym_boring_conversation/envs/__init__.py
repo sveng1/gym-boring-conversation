@@ -1,0 +1,2 @@
+from gym_boring_conversation.envs.boring_conversation_env import boring_conversationEnv
+from gym_boring_conversation.envs.boring_conversation_extrahard_env import boring_conversationExtraHardEnv
