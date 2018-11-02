@@ -48,7 +48,7 @@ class Boring_conversationEnv(gym.Env):
 
     
     def render(self, mode='human', close=False):
-        if self.is_person_angry == 0:
+        if self.state == 0:
             print("Boring person is happy")
         else:
             print("Boring person is angry with you for not listening")
