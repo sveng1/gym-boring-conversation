@@ -10,6 +10,8 @@ class Boring_conversationEnv(gym.Env):
 
         self.is_person_angry = 0
         self.action_space = spaces.Discrete(2)
+        self.done = False
+        self.info = "No info right now"
 
 
     def _transition_prob(self,a):
@@ -37,12 +39,17 @@ class Boring_conversationEnv(gym.Env):
         reward, s_next = step
     
         self.is_person_angry = s_next
-        self.
-        return reward, s_next
+        
+        return s_next, reward, self.done, info
+
+    def reset(self):
+
+        self.is_person_angry = 0
+        return "The boring person is happy."
 
     
     def render(self, mode='human', close=False):
-        if self.is_person_angry = 0:
+        if self.is_person_angry == 0:
             print("Boring person is happy")
         else:
             print("Boring person is angry with you for not listening")
