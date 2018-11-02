@@ -27,8 +27,8 @@ class Boring_conversationEnv(gym.Env):
         p[(1,1)] = {(-5,0):1}
 
         prob = p[(self.state, action)]
-        probs = [v for v,k in prob.items()]
-        trans = [k for v,k in prob.items()]
+        trans = [v for v,k in prob.items()]
+        probs = [k for v,k in prob.items()]
 
         outcome = np.random.choice(range(len(trans)),1,p=probs)
         step = trans[outcome[0]]
