@@ -16,22 +16,17 @@ class Boring_conversationEnv(gym.Env):
         self.info = "No info right now"
 
 
-    def _transition_prob(self,a):
+    def step(self, action):
 
-        s = self.state
-        p = {}
+        #Transition probabilities
         #p[s,a]={(r,s'):P(r,s'|s,a)}
+        p = {}
         p[(0,0)] = {(0,0):0.7, (-2,1):0.3}
         p[(0,1)] = {(-5,0):1}
         p[(1,0)] = {(-2,1): 0.95, (0,0):0.05}
         p[(1,1)] = {(-5,0):1}
 
-        return p[(s,a)]
-
-
-    def step(self, action):
-
-        prob = _transition_prob(action)
+        prob = p[(self.state, action)]
         probs = [v for v,k in prob.items()]
         trans = [k for v,k in prob.items()]
 
@@ -40,7 +35,7 @@ class Boring_conversationEnv(gym.Env):
         reward, s_next = step
     
         self.state = s_next
-        return s_next, reward, self.done, info
+        return s_next, reward, self.done, self.info
 
 
     def reset(self):
