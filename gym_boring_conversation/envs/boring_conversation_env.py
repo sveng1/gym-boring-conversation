@@ -11,8 +11,10 @@ class Boring_conversationEnv(gym.Env):
         self.state = 0
         self.action_space = spaces.Discrete(2)
         self.observation_space = spaces.Discrete(2)
+        self.reward_range = (-5,-2,0)
         self.done = False
         self.info = "No info right now"
+
 
     def _transition_prob(self,a):
 
@@ -26,6 +28,7 @@ class Boring_conversationEnv(gym.Env):
 
         return p[(s,a)]
 
+
     def step(self, action):
 
         prob = _transition_prob(action)
@@ -37,11 +40,10 @@ class Boring_conversationEnv(gym.Env):
         reward, s_next = step
     
         self.state = s_next
-        
         return s_next, reward, self.done, info
 
-    def reset(self):
 
+    def reset(self):
         self.state = 0
 
     
